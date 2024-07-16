@@ -1,5 +1,4 @@
-import React, { useState } from "react";
-import "./login.css";
+import React, { useState } from 'react'
 import { useForm } from "react-hook-form";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
@@ -15,8 +14,19 @@ import {
   IconButton,
 } from "@mui/material";
 import { Visibility, VisibilityOff } from "@mui/icons-material";
+import { FaUserAlt } from "react-icons/fa";
+import { MdOutlineKey } from "react-icons/md";
+import { IoMdEye, IoMdEyeOff } from 'react-icons/io';
 
-function Login() {
+const Login = () => {
+
+  //images
+  const sliderImg1 = `${process.env.PUBLIC_URL}/assets/images/login/img1.png`;
+  const sliderImg2 = `${process.env.PUBLIC_URL}/assets/images/login/img2.png`;
+  const sliderImg3 = `${process.env.PUBLIC_URL}/assets/images/login/img2.jpg`;
+  const backgroungimage = `${process.env.PUBLIC_URL}/assets/images/login/bg.png`;
+
+  // slider
   var settings = {
     dots: true,
     infinite: true,
@@ -24,6 +34,8 @@ function Login() {
     slidesToShow: 1,
     slidesToScroll: 1,
   };
+
+  // form
   const {
     register,
     handleSubmit,
@@ -33,21 +45,13 @@ function Login() {
   const onSubmit = (data) => {
     console.log(data);
   };
+
   const [showPassword, setShowPassword] = useState(false);
   const handleClickShowPassword = () => setShowPassword((show) => !show);
-  const handleMouseDownPassword = (event) => {
-    event.preventDefault();
-  };
-
-  //images
-  const sliderImg1 = `${process.env.PUBLIC_URL}/assets/images/img1.png`;
-  const sliderImg2 = `${process.env.PUBLIC_URL}/assets/images/img2.png`;
-  const sliderImg3 = `${process.env.PUBLIC_URL}/assets/images/img3.jpg`;
-  const backgroungimage = `${process.env.PUBLIC_URL}/assets/images/bg.png`;
 
   return (
-    <div
-      class="mainbody"
+    <section
+      class="login-page"
       style={{
         backgroundImage: `url(${backgroungimage})`,
         backgroundSize: "cover",
@@ -56,65 +60,65 @@ function Login() {
     >
       <div className="container">
         <div className="left">
-          <div className="logo">
-            <h1>Get Started</h1>
-          </div>
-
+          <h1 className="title">Get Started</h1>
           <form onSubmit={handleSubmit(onSubmit)}>
-            <FormControl sx={{ m: 1, width: "25ch" }} variant="outlined">
-              <InputLabel htmlFor="outlined-adornment-email">Email</InputLabel>
-              <OutlinedInput
-                id="outlined-adornment-email"
-                type="email"
-                fullWidth
-                {...register("email", {
-                  required: "Email is required.",
-                  pattern: {
-                    value: /^[^@ ]+@[^@ ]+\.[^@ .]{2,}$/,
-                    message: "Email is not valid.",
-                  },
-                })}
-                error={!!errors.email}
-                label="Email"
-              />
-              {errors.email && (
+            <div className="input-group">
+              <div className="icon-box">
+                <span className="input-icon">
+                  <FaUserAlt />
+                </span>
+                <input
+                  type="text"
+                  id="username"
+                  className="form-control"
+                  placeholder=''
+                  autocomplete="off"
+                  {...register("username", {
+                    required: "Username is required.",
+                  })}
+                  error={!!errors.username}
+                  autofocus
+                />
+                <label htmlFor='username'>Username</label>
+              </div>
+              {errors.username && (
                 <Typography variant="body2" color="error">
-                  {errors.email.message}
+                  {errors.username.message}
                 </Typography>
               )}
-            </FormControl>
-            <FormControl sx={{ m: 1, width: "25ch" }} variant="outlined">
-              <InputLabel htmlFor="outlined-adornment-password">
-                Password
-              </InputLabel>
-              <OutlinedInput
-                id="outlined-adornment-password"
-                type={showPassword ? "text" : "password"}
-                {...register("password", {
-                  required: true,
-                  validate: {
-                    checkLength: (value) => value.length >= 6,
-                    matchPattern: (value) =>
-                      /(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?!.*\s)(?=.*[!@#$*])/.test(
-                        value
-                      ),
-                  },
-                })}
-                error={!!errors.password}
-                endAdornment={
-                  <InputAdornment position="end">
-                    <IconButton
-                      aria-label="toggle password visibility"
-                      onClick={handleClickShowPassword}
-                      onMouseDown={handleMouseDownPassword}
-                      edge="end"
-                    >
-                      {showPassword ? <VisibilityOff /> : <Visibility />}
-                    </IconButton>
-                  </InputAdornment>
-                }
-                label="Password"
-              />
+            </div>
+            <div className="input-group">
+              <div className="icon-box">
+                <span className="input-icon">
+                  <MdOutlineKey />
+                </span>
+                <input
+                  type={showPassword ? "text" : "password"}
+                  id="password"
+                  className="form-control"
+                  placeholder=''
+                  autocomplete="off"
+                  {...register("password", {
+                    required: true,
+                    validate: {
+                      checkLength: (value) => value.length >= 6,
+                      matchPattern: (value) =>
+                        /(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?!.*\s)(?=.*[!@#$*])/.test(
+                          value
+                        ),
+                    },
+                  })}
+                  error={!!errors.password}
+                />
+                <label htmlFor='password'>Password</label>
+                <span
+                  className="eye-icon"
+                  onClick={handleClickShowPassword}>
+                  {showPassword ?
+                    <IoMdEye /> : <IoMdEyeOff />
+                  }
+                </span>
+              </div>
               {errors.password?.type === "required" && (
                 <Typography variant="body2" color="error">
                   Password is required.
@@ -131,7 +135,7 @@ function Login() {
                   lowercase letter, digit, and special symbol.
                 </Typography>
               )}
-            </FormControl>
+            </div>
             <Button type="submit" variant="contained" color="primary" fullWidth>
               Login
             </Button>
@@ -165,8 +169,8 @@ function Login() {
           </Slider>
         </div>
       </div>
-    </div>
-  );
+    </section>
+  )
 }
 
-export default Login;
+export default Login
