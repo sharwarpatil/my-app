@@ -1,4 +1,4 @@
-body {
+/* body {
   margin: 0;
   font-family: Arial, sans-serif;
   display: flex;
@@ -43,7 +43,7 @@ body {
   /* display: flex;
   justify-content: center;
   align-items: center; */
-}
+/* }
 
 .logo {
   font-weight: 800;
@@ -81,15 +81,14 @@ form {
 
 label {
   margin-top: 15px;
-
   position: relative;
 }
 
-input {
-  /* margin-top: 5px;
+input { */
+/* margin-top: 5px;
   border: 1px solid #ccc;
   border-radius: 5px; */
-  width: 100%;
+/* width: 100%;
   padding: 10px 40px 10px 10px;
   border: 1px solid #ccc;
   border-radius: 25px;
@@ -131,7 +130,7 @@ button:hover {
 .slickbox img {
   background-repeat: no-repeat;
   background-size: cover;
-}
+} */
 /* 
 .slick-slider {
   margin: -15px;

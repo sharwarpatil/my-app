@@ -1,9 +1,9 @@
 :root {
-  --primary-color: #00215E;
-  --secondary-color: #FFC55A;
+  --primary-color: #00215e;
+  --secondary-color: #ffc55a;
   --background-color: #f5f6fa;
-  --text-color: #2C4E80;
-  --accent-color: #E21818;
+  --text-color: #2c4e80;
+  --accent-color: #e21818;
 }
 
 /* Common */
@@ -40,10 +40,27 @@ body {
 }
 
 .login-page .container .right {
-  width: 50%;
+  width: 47.5%;
   background-color: var(--primary-color);
   color: white;
   text-align: center;
+  border-radius: 10px;
+  height: 97%;
+  margin: auto;
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
+}
+
+.login-page .container .right .slickslider {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 100%;
+}
+
+.login-page .container .right .slickbox {
+}
+.login-page .container .right .slickbox .images {
+  border-radius: 30%;
 }
 
 .login-page .container .title {
@@ -112,8 +129,8 @@ body {
   box-shadow: 2px 0px 10px 1px #e7e7e7;
 }
 
-.login-page .container .input-group input:focus~label,
-.login-page .container .input-group input:not(:placeholder-shown)~label {
+.login-page .container .input-group input:focus ~ label,
+.login-page .container .input-group input:not(:placeholder-shown) ~ label {
   top: -9px;
   left: 50px;
   font-size: 12px;

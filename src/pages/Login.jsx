@@ -1,8 +1,9 @@
-import React, { useState } from 'react'
+import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Slider from "react-slick";
+
 import {
   TextField,
   Button,
@@ -16,14 +17,13 @@ import {
 import { Visibility, VisibilityOff } from "@mui/icons-material";
 import { FaUserAlt } from "react-icons/fa";
 import { MdOutlineKey } from "react-icons/md";
-import { IoMdEye, IoMdEyeOff } from 'react-icons/io';
+import { IoMdEye, IoMdEyeOff } from "react-icons/io";
 
 const Login = () => {
-
   //images
   const sliderImg1 = `${process.env.PUBLIC_URL}/assets/images/login/img1.png`;
   const sliderImg2 = `${process.env.PUBLIC_URL}/assets/images/login/img2.png`;
-  const sliderImg3 = `${process.env.PUBLIC_URL}/assets/images/login/img2.jpg`;
+  const sliderImg3 = `${process.env.PUBLIC_URL}/assets/images/login/img3.png`;
   const backgroungimage = `${process.env.PUBLIC_URL}/assets/images/login/bg.png`;
 
   // slider
@@ -71,7 +71,7 @@ const Login = () => {
                   type="text"
                   id="username"
                   className="form-control"
-                  placeholder=''
+                  placeholder=""
                   autocomplete="off"
                   {...register("username", {
                     required: "Username is required.",
@@ -79,7 +79,7 @@ const Login = () => {
                   error={!!errors.username}
                   autofocus
                 />
-                <label htmlFor='username'>Username</label>
+                <label htmlFor="username">Username</label>
               </div>
               {errors.username && (
                 <Typography variant="body2" color="error">
@@ -96,7 +96,7 @@ const Login = () => {
                   type={showPassword ? "text" : "password"}
                   id="password"
                   className="form-control"
-                  placeholder=''
+                  placeholder=""
                   autocomplete="off"
                   {...register("password", {
                     required: true,
@@ -110,13 +110,9 @@ const Login = () => {
                   })}
                   error={!!errors.password}
                 />
-                <label htmlFor='password'>Password</label>
-                <span
-                  className="eye-icon"
-                  onClick={handleClickShowPassword}>
-                  {showPassword ?
-                    <IoMdEye /> : <IoMdEyeOff />
-                  }
+                <label htmlFor="password">Password</label>
+                <span className="eye-icon" onClick={handleClickShowPassword}>
+                  {showPassword ? <IoMdEye /> : <IoMdEyeOff />}
                 </span>
               </div>
               {errors.password?.type === "required" && (
@@ -142,27 +138,27 @@ const Login = () => {
           </form>
         </div>
         <div className="right">
-          <Slider {...settings}>
+          <Slider className="slickslider" {...settings}>
             <div>
               <div class="slickbox">
-                <div class="bg-slate-400  h-[80vh]">
+                <div>
                   {" "}
-                  <img src={sliderImg1} alt="" />
+                  <img class="images" src={sliderImg1} alt="" />
                 </div>
               </div>
             </div>
             <div>
               <div class="slickbox">
-                <div class="bg-red-100 h-[80vh]">
+                <div>
                   {" "}
-                  <img src={sliderImg2} alt="" />
+                  <img class="images" src={sliderImg2} alt="" />
                 </div>
               </div>
             </div>
             <div>
               <div class="slickbox">
-                <div class="bg-green-100 h-[80vh]">
-                  <img src={sliderImg3} alt=""></img>
+                <div>
+                  <img class="images" src={sliderImg3} alt=""></img>
                 </div>
               </div>
             </div>
@@ -170,7 +166,7 @@ const Login = () => {
         </div>
       </div>
     </section>
-  )
-}
+  );
+};
 
-export default Login
+export default Login;
